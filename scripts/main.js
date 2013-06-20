@@ -1,16 +1,15 @@
 require([
   '$api/models',
-  'scripts/language-example',
-  'scripts/cover-example',
-  'scripts/button-example',
-  'scripts/playlist-example'
-], function(models, languageExample, coverExample, buttonExample, playlistExample) {
+  'scripts/mixable',
+], function(models, mixable) {
   'use strict';
 
-  languageExample.doHelloWorld();
-  coverExample.doCoverForAlbum();
-  buttonExample.doShareButtonForArtist();
-  buttonExample.doPlayButtonForAlbum();
-  playlistExample.doPlaylistForAlbum();
+  //languageExample.doHelloWorld();
+  //coverExample.doCoverForAlbum();
+  //buttonExample.doShareButtonForArtist();
+  //buttonExample.doPlayButtonForAlbum();
+  //playlistExample.doPlaylistForAlbum();
 
+  mixable.doPlaylistForAlbum();
+  mixable.searchEchoNest();
 });
