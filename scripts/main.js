@@ -10,6 +10,11 @@ require([
   //buttonExample.doPlayButtonForAlbum();
   //playlistExample.doPlaylistForAlbum();
 
-  mixable.doPlaylistForAlbum();
-  mixable.searchEchoNest();
+  //mixable.doPlaylistForAlbum();
+  $("#search").bind("click", function() {
+    mixable.searchEchoNest($("#query").val());
+    return false;
+  });
+
+  //mixable.searchEchoNest();
 });
