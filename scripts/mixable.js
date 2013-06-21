@@ -4,6 +4,20 @@ require([
 ], function(models, List) {
   'use strict';
 
+  var loadPlaylist = function(tracks) {
+    models.Playlist.createTemporary().done(function(playlist) {
+      playlist.load("tracks").done(function() {
+        playlist.tracks.clear().done(function() {
+          playlist.tracks.add(tracks).done(function() {
+            var list = List.forPlaylist(playlist);
+            $("#playlistContainer").empty().append(list.node);
+            list.init();              
+          });
+        });
+      });
+    });
+  };
+
   var searchEchoNest = function(query) {
     $.ajaxSetup({traditional: true, cache: true});
     var url = "http://developer.echonest.com/api/v4/song/search?api_key=FILDTEOIK2HBORODV"
@@ -45,7 +59,29 @@ require([
       results: 20,
       // sort: "song_hotttnesss-desc"
     }, onSearchSuccess);
-  }
+  };
 
-  exports.searchEchoNest      = searchEchoNest;
+  var searchLastFM = function(query) {
+    var url = "http://www.last.fm/search/autocomplete"
+
+    var onSearchError    = function(e) { console.log(e); };
+    var onSearchSuccess  = function(data) {
+      var tracks = [];
+
+      for (var i=0; i < data.response.docs.length; i++) {
+        var doc = data.response.docs[i];
+        if (doc.restype != 9) continue; // restype 8 => album, 9 => track
+
+        var track_uri = ["spotify", "local", doc.artist, "mixable", doc.track, doc.duration].join(":")
+        tracks.push(models.Track.fromURI(track_uri))
+      }
+
+      loadPlaylist(tracks);
+    };
+
+    $.getJSON(url, {q: query}, onSearchSuccess, onSearchError);
+  };
+
+  exports.searchEchoNest = searchEchoNest;
+  exports.searchLastFM   = searchLastFM;
 });
