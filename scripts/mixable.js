@@ -62,21 +62,39 @@ require([
   };
 
   var searchLastFM = function(query) {
-    var url = "http://www.last.fm/search/autocomplete"
+    var api_url = "http://ws.audioscrobbler.com/2.0/";
+    var url = "http://www.last.fm/search/autocomplete";
 
     var onSearchError    = function(e) { console.log(e); };
     var onSearchSuccess  = function(data) {
+      var jxhr   = [];
       var tracks = [];
 
       for (var i=0; i < data.response.docs.length; i++) {
         var doc = data.response.docs[i];
         if (doc.restype != 9) continue; // restype 8 => album, 9 => track
 
-        var track_uri = ["spotify", "local", doc.artist, "mixable", doc.track, doc.duration].join(":")
-        tracks.push(models.Track.fromURI(track_uri))
+        jxhr.push(
+          $.getJSON(api_url, {
+            api_key: "e6bd9d760d0401e82f3d951e9f4f0555",
+            format: "json",
+            method: "track.getInfo",
+            track:  doc.track,
+            artist: doc.artist,
+          }, function(data) {
+            var track = data.track;
+            var album = "mixable";
+            if (track.album) album = track.album.title;
+
+            var track_uri = ["spotify", "local", track.artist.name, album, track.name, track.duration / 1000].join(":")
+            tracks.push(models.Track.fromURI(track_uri))
+          })
+        );
       }
 
-      loadPlaylist(tracks);
+      $.when.apply($, jxhr).done(function() {
+        loadPlaylist(tracks);
+      });
     };
 
     $.getJSON(url, {q: query}, onSearchSuccess, onSearchError);
