@@ -29,7 +29,7 @@
     "pl": "My Boilerplate App in Polish",
     "zh-Hant": "My Boilerplate App in Chinese"
   },
-  "BundleIdentifier": "metasort",
+  "BundleIdentifier": "mixable",
   "BundleType": "Application",
   "BundleVersion": "0.0.1",
   "Dependencies": {
