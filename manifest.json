@@ -37,7 +37,7 @@
     "views": "1.10.0"
   },
   "RequiredPermissions": [
-    "http://developer.echonest.com"
+    "http://www.last.fm"
   ],
   "SupportedDeviceClasses": [
     "Web",
