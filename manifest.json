@@ -1,7 +1,7 @@
 {
   "AppDescription": {
+    "en": "Make and Share Impeccable Spotify Playlists",
     "de": "Description of My Boilerplate App in German",
-    "en": "Description of My Boilerplate App",
     "es": "Description of My Boilerplate App in Spanish",
     "es-419": "Description of My Boilerplate App in LA Spanish",
     "fr": "Description of My Boilerplate App in French",
@@ -19,8 +19,8 @@
     "300x300": "images/icons/icon-300x300.png"
   },
   "AppName": {
+    "en": "Mixable",
     "de": "My Boilerplate App in German",
-    "en": "My Boilerplate App",
     "es": "My Boilerplate App in Spanish",
     "es-419": "My Boilerplate App in LA Spanish",
     "fr": "My Boilerplate App in French",
@@ -44,8 +44,8 @@
     "Desktop"
   ],
   "SupportedLanguages": [
-    "de",
     "en",
+    "de",
     "es",
     "es-419",
     "fr",
@@ -54,5 +54,5 @@
     "pl",
     "zh-Hant"
   ],
-  "VendorIdentifier": "com.myorganization"
+  "VendorIdentifier": "com.mixable"
 }
