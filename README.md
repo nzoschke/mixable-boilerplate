@@ -5,15 +5,14 @@ mixable
 
 First, turn your Spotify account into a [developer account](https://developer.spotify.com/technologies/apps/#developer-account).
 
-Next, make a Spotify apps folder, and check out mixable
-:
+Next, make a Spotify apps folder, and check out mixable:
 
 ```sh
 mkdir -p ~/Spotify && cd ~/Spotify
 git clone https://github.com/nzoschke/mixable.git
 ```
 
-Finally, open Spotify and enter "spotify:app:mixable" into the search box.
+Finally, open Spotify and enter "spotify:app:mixable" into the search box, and "Add Application to Favorites."
 
 boilerplate-app
 ===============
